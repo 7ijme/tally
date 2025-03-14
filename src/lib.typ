@@ -23,7 +23,7 @@
               let headings = query(selector(heading).before(it.last()))
 
               if headings.len() > 1 {
-                [*#query(selector(heading).before(it.last())).last().body*:]
+                [*#headings.last().body*:]
               }
             } #it.first()],
         )),
