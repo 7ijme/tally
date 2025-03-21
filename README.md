@@ -5,9 +5,11 @@ The tally package automatically lists all todos in a document and highlights the
 ## Usage
 
 ```typst
-#import "@preview/tally:0.1.0": tally
+#import "@preview/tally:0.1.1": tally, todo-list
 #set text(font: "Barlow")
 #show: tally.with(color: red)
+
+#todo-list
 
 = Introduction
 #lorem(10)
