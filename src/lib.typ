@@ -10,25 +10,26 @@
     todos.map(it => highlight(fill: color)[TODO: #it ]).join()
   }
 
-  context [
-    #if todo-list.final().len() > 0 {
-      heading(outlined: false, [Todo])
-    }
-    #list(
-      ..todo-list
-        .final()
-        .map(it => link(
-          it.last(),
-          [#{
-              let headings = query(selector(heading).before(it.last()))
-
-              if headings.len() > 1 {
-                [*#headings.last().body*:]
-              }
-            } #it.first()],
-        )),
-    )
-  ]
-
   body
+}
+
+#let todo-list = context {
+  let todo-list = state("todo-list", ())
+  if todo-list.final().len() > 0 {
+    heading(outlined: false, [Todo])
+  }
+  list(
+    ..todo-list
+      .final()
+      .map(it => link(
+        it.last(),
+        [#{
+            let headings = query(selector(heading).before(it.last()))
+
+            if headings.len() > 1 {
+              [*#headings.last().body*:]
+            }
+          } #it.first()],
+      )),
+  )
 }
