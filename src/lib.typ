@@ -3,7 +3,8 @@
   let reg = regex("TODO:(.+)")
   show reg: it => context {
     let todo = it.text.match(reg).captures.at(0).trim()
-    todo-list.update(lst => lst.push(todo))
+    let here = here()
+    todo-list.update(lst => ((todo, here),))
     highlight(fill: color)[TODO: #todo]
   }
 
