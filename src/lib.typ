@@ -4,7 +4,7 @@
   show reg: it => context {
     let todo = it.text.match(reg).captures.at(0).trim()
     let here = here()
-    todo-list.update(lst => ((todo, here),))
+    todo-list.update(lst => lst + ((todo, here),))
     highlight(fill: color)[TODO: #todo]
   }
 
