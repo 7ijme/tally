@@ -1,13 +1,11 @@
 #let tally(body, color: yellow) = {
   let todo-list = state("todo-list", ())
-  let reg = regex("TODO:.+")
+  let reg = regex("TODO:(.+)")
   show reg: it => context {
-    let todos = it
-      .text
-      .matches(regex("TODO:"))
-      .map(t => it.text.slice(t.end).trim(reg).trim())
-    todo-list.update(todo-list.get() + todos.map(it => (it, here())))
-    todos.map(it => highlight(fill: color)[TODO: #it ]).join()
+    let todo = it.text.match(reg).captures.at(0).trim()
+    let here = here()
+    todo-list.update(lst => lst + ((todo, here),))
+    highlight(fill: color)[TODO: #todo]
   }
 
   body
